@@ -1,43 +1,21 @@
 package com.nhpuma.app.usuarios.services;
 
-import java.util.Optional;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.nhpuma.app.usuarios.models.entity.Alumno;
 import com.nhpuma.app.usuarios.models.repository.AlumnoRepository;
+import com.nhpuma.microservicios.commons.services.CommonServiceImpl;
+import com.nhpuma.microservicios.commonsalumnos.models.entity.Alumno;
 
 @Service
-public class AlumnoServiceImpl implements AlumnoService {
-
-	@Autowired
-	private AlumnoRepository repository;
-	
-	@Override
-	@Transactional(readOnly = true)
-	public Iterable<Alumno> findAll() {
-		// TODO Auto-generated method stub
-		return repository.findAll();
-	}
+public class AlumnoServiceImpl extends CommonServiceImpl<Alumno, AlumnoRepository> implements AlumnoService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Alumno> findById(Long id) {
-		return repository.findById(id);
-	}
-
-	@Override
-	@Transactional
-	public Alumno save(Alumno alumno) {
-		return repository.save(alumno);
-	}
-
-	@Override
-	@Transactional
-	public void deleteById(Long id) {
-		repository.deleteById(id);
+	public List<Alumno> findByNombreOrApellido(String term) {
+		return repository.findByNombreOrApellido(term);
 	}
 
 }

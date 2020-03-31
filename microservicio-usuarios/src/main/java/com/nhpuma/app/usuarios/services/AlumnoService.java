@@ -1,16 +1,11 @@
 package com.nhpuma.app.usuarios.services;
 
-import java.util.Optional;
+import java.util.List;
 
-import com.nhpuma.app.usuarios.models.entity.Alumno;
+import com.nhpuma.microservicios.commons.services.CommonService;
+import com.nhpuma.microservicios.commonsalumnos.models.entity.Alumno;
 
-public interface AlumnoService {
+public interface AlumnoService extends CommonService<Alumno> {
 
-	public Iterable<Alumno> findAll();
-	
-	public Optional<Alumno> findById(Long id);
-	
-	public Alumno save(Alumno alumno);
-	
-	public void deleteById(Long id);
+	public List<Alumno> findByNombreOrApellido(String term);
 }
